@@ -30,7 +30,7 @@ public class QuartzSchedulerListener implements ServletContextListener {
 					.newTrigger()
 					.withIdentity("Trigger_AccessTokenUpdate", "group_weixin")
 					.withSchedule(
-							CronScheduleBuilder.cronSchedule("0/10 * * * * ?"))
+							CronScheduleBuilder.cronSchedule("* 0/30 * * * ?"))
 					.build();
 
 			Scheduler scheduler = new StdSchedulerFactory().getScheduler();
