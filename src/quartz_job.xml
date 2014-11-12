@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quartz>
+	<job>
+		<job-detail>
+			<name>Job_AccessTokenUpdate</name>
+			<group>DEFAULT</group>
+			<job-class>
+				com.chiefmech.weixin.quartz.AccessTokenUpdateJob
+			</job-class>
+		</job-detail>
+		<trigger>
+			<cron>
+				<name>cron_AccessTokenUpdate</name>
+				<group>DEFAULT</group>
+				<job-name>Job_AccessTokenUpdate</job-name>
+				<job-group>DEFAULT</job-group>
+				<cron-expression>0 */30 * * * ?</cron-expression>
+			</cron>
+		</trigger>
+	</job>
+</quartz>

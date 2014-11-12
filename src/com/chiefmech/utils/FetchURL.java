@@ -332,6 +332,7 @@ public class FetchURL {
 	}
 
 	public String fetch(String url) {
+		logger.info(url);
 		try {
 			url = checkProtocol(url);
 			this.http = choiceHttpMethod(this.method, url);

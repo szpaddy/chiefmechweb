@@ -29,6 +29,8 @@
     </package>
 
     <include file="example.xml"/>
+    
+    <include file="struts_weixin.xml"/>
 
     <!-- Add packages here -->
 
