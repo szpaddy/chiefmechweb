@@ -56,7 +56,7 @@ public class FetchURL {
 	private static final String OPTIONS = "OPTIONS";
 	private static final String TRACE = "TRACE";
 	private static final int MAX_REDIRECT_NUM = 5;
-	private static final int MAX_SEND_DATA = 10485760;
+	private static final int MAX_SEND_DATA = 10485760;// 10M
 	private static Logger logger = Logger.getLogger(FetchURL.class.getName());
 	private String method = GET;
 

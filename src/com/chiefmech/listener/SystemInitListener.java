@@ -6,7 +6,6 @@ import javax.servlet.ServletContextListener;
 import org.apache.log4j.Logger;
 import org.quartz.JobExecutionException;
 
-import com.chiefmech.utils.ConfigUtil;
 import com.chiefmech.weixin.quartz.AccessTokenUpdateJob;
 
 public class SystemInitListener implements ServletContextListener {
