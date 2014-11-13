@@ -9,9 +9,7 @@
 
 		<action name="message"
 			class="com.chiefmech.weixin.action.WeixinMessageAction">
-			<result name="success">/weixin/weixinInterface.jsp</result>
 		</action>
 
-		<!-- Add actions here -->
 	</package>
 </struts>

@@ -60,4 +60,8 @@ public class ConfigUtil {
 	public String getUrlAccessTokenTpl() {
 		return this.cfg.getStringProperty("url_accesstoken_tpl");
 	}
+
+	public String getWeixinAppBindToken() {
+		return this.cfg.getStringProperty("weixin_bind_token");
+	}
 }
