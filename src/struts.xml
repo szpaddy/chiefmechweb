@@ -5,33 +5,26 @@
 
 <struts>
 
-    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
-    <constant name="struts.devMode" value="false" />
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
 
-    <package name="default" namespace="/" extends="struts-default">
+	<package name="default" namespace="/" extends="struts-default">
 
-        <default-action-ref name="index" />
+		<global-results>
+			<result name="error">/error.jsp</result>
+		</global-results>
 
-        <global-results>
-            <result name="error">/error.jsp</result>
-        </global-results>
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception"
+				result="error" />
+		</global-exception-mappings>
 
-        <global-exception-mappings>
-            <exception-mapping exception="java.lang.Exception" result="error"/>
-        </global-exception-mappings>
+	</package>
+	<!-- -->
+	<include file="struts_ajax.xml" />
 
-        <action name="index">
-            <result type="redirectAction">
-                <param name="actionName">HelloWorld</param>
-                <param name="namespace">/example</param>
-            </result>
-        </action>
-    </package>
+	<include file="struts_weixin.xml" />
 
-    <include file="example.xml"/>
-    
-    <include file="struts_weixin.xml"/>
-
-    <!-- Add packages here -->
+	<!-- Add packages here -->
 
 </struts>

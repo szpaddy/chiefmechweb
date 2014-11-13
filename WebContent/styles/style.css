@@ -1,3 +1,10 @@
+body {
+	margin:0;
+	font-family:"Microsoft Yahei", "Tahoma", Arial;
+	font-size:14px;
+	color:#333;
+	background-color:#FFF
+}
 .icon16_common {
 	width:16px;
 	height:16px;
@@ -22,13 +29,6 @@ h1 {
 	line-height:30px;
 	position:relative;
 	clear:both
-}
-body {
-	margin:0;
-	font-family:"Microsoft Yahei", "Tahoma", Arial;
-	font-size:14px;
-	color:#333;
-	background-color:#FFF
 }
 ul {
 	list-style-type:none;
@@ -63,7 +63,7 @@ pre {
 	height:40px;
 	overflow:hidden;
 	text-decoration:none;
-	background:transparent url(/debug/zh_CN/htmledition/images/bg/bg_logo1f2fc8.png) no-repeat 0 0
+	background:transparent url(../images/bg/bg_logo.png) no-repeat 0 0
 }
 .main {
 	width:960px;
