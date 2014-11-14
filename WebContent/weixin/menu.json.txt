@@ -1,12 +1,12 @@
-{
+﻿{
 	"button":[
      {
            "name":"找店",
            "sub_button":[
            {	
                "name":"洗车",
-               "type":"view",
-               "url":"http://1.weixinjavat2.sinaapp.com/weixin/xx.html"
+               "type":"click",
+               "key":"key_shop_wash"
             },
            {	
                "name":"保养",

@@ -9,7 +9,7 @@ import org.quartz.JobExecutionException;
 
 import com.chiefmech.utils.ConfigUtil;
 import com.chiefmech.utils.FetchURL;
-import com.chiefmech.weixin.AccessTokenManager;
+import com.chiefmech.weixin.util.AccessTokenUtil;
 import com.chiefmech.weixin.vo.AccessToken;
 
 /**
@@ -51,7 +51,7 @@ public class AccessTokenUpdateJob implements Job {
 			}
 
 			if (accessToken != null) {
-				AccessTokenManager.getInstance().updateAccessToken(accessToken);
+				AccessTokenUtil.getInstance().updateAccessToken(accessToken);
 			} else {
 				logger.error("Failed to get valid access_token json string");
 			}

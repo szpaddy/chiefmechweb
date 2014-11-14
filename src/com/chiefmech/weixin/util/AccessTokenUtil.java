@@ -1,23 +1,23 @@
-package com.chiefmech.weixin;
+package com.chiefmech.weixin.util;
 
 import org.apache.log4j.Logger;
 
 import com.chiefmech.weixin.vo.AccessToken;
 
-public class AccessTokenManager {
-	private static Logger logger = Logger.getLogger(AccessTokenManager.class
+public class AccessTokenUtil {
+	private static Logger logger = Logger.getLogger(AccessTokenUtil.class
 			.getName());
 
-	private static AccessTokenManager manager = new AccessTokenManager();
+	private static AccessTokenUtil instance = new AccessTokenUtil();
 
 	private AccessToken access_token;
 
-	private AccessTokenManager() {
+	private AccessTokenUtil() {
 
 	}
 
-	public static AccessTokenManager getInstance() {
-		return manager;
+	public static AccessTokenUtil getInstance() {
+		return instance;
 	}
 
 	public AccessToken getAccessToken() {

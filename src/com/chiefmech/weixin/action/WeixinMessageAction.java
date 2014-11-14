@@ -17,33 +17,14 @@ import org.dom4j.Element;
 
 import com.chiefmech.common.action.ajax.AjaxActionSupport;
 import com.chiefmech.utils.ConfigUtil;
-import com.chiefmech.weixin.AccessTokenManager;
+import com.chiefmech.weixin.util.AccessTokenUtil;
 
-public class WeixinMessageAction extends AjaxActionSupport {
+public class WeixinMessageAction extends WeixinActionSupport {
 	private static final long serialVersionUID = -4273289913797179961L;
-	private static Logger logger = Logger.getLogger(AccessTokenManager.class
+	private static Logger logger = Logger.getLogger(AccessTokenUtil.class
 			.getName());
 
-	private String signature = null;
-	private String echostr = null;
-	private String timestamp = null;
-	private String nonce = null;
-	private String token = ConfigUtil.getInstance().getWeixinAppBindToken();
-
-	@Override
-	protected void handleAjaxRequest() {
-		if (null == echostr || echostr.isEmpty()) {
-			responseMsg();
-		} else {
-			String echoMsg = "checkSignature failed";
-			if (this.checkSignature()) {
-				echoMsg = this.echostr;
-			}
-			transmitPlainText(echoMsg);
-		}
-	}
-	
-	//http://blog.csdn.net/wangqianjiao/article/details/8469780
+	// http://blog.csdn.net/wangqianjiao/article/details/8469780
 	private void responseMsg() {
 		String postStr = getHttpRawPostData();
 		logger.info("HttpRawPostData:" + postStr);
@@ -75,7 +56,7 @@ public class WeixinMessageAction extends AjaxActionSupport {
 			if (null != keyword && !keyword.equals("")) {
 				String msgType = "text";
 				String contentStr = "Welcome to wechat world!";
-				String resultStr = textTpl.format(textTpl, fromUsername,
+				String resultStr = String.format(textTpl, fromUsername,
 						toUsername, time, msgType, contentStr);
 				transmitPlainText(resultStr);
 			} else {
@@ -85,87 +66,6 @@ public class WeixinMessageAction extends AjaxActionSupport {
 		} else {
 			transmitPlainText("");
 		}
-	}
-
-	/**
-	 * 网址接入验证
-	 * 
-	 * 公众平台用户提交信息后，微信服务器将发送GET请求到填写的URL上，并且带上四个参数： 参数 描述 signature 微信加密签名
-	 * timestamp 时间戳 nonce 随机数 echostr 随机字符串。 开发者通过检验signature对请求进行校验（下面有校验方式）。
-	 * 
-	 * @return 若确认此次GET请求来自微信服务器，请原样返回echostr参数内容，则接入生效，否则接入失败。
-	 */
-	private boolean checkSignature() {
-		boolean isSignatureValid = false;
-		if (token != null && timestamp != null && nonce != null
-				&& signature != null) {
-			logger.debug(String.format(
-					"token=%s timestamp=%s nonce=%s signature=%s", token,
-					timestamp, nonce, signature));
-
-			String[] strAry = { token, timestamp, nonce };
-			Arrays.sort(strAry);
-
-			StringBuffer bf = new StringBuffer();
-			for (int i = 0; i < strAry.length; i++) {
-				bf.append(strAry[i]);
-			}
-			byte[] rowbytes = bf.toString().getBytes();
-
-			try {
-				MessageDigest md = MessageDigest.getInstance("SHA-1");
-				byte[] sh1bytes = md.digest(rowbytes);
-
-				StringBuffer formatBuf = new StringBuffer(sh1bytes.length * 2);
-				for (int i = 0; i < sh1bytes.length; i++) {
-					if (((int) sh1bytes[i] & 0xff) < 0x10) {
-						formatBuf.append("0");
-					}
-					formatBuf.append(Long
-							.toString((int) sh1bytes[i] & 0xff, 16));
-				}
-
-				if (formatBuf.toString().toUpperCase()
-						.equalsIgnoreCase(signature)) {
-					isSignatureValid = true;
-				}
-			} catch (Exception e) {
-				logger.error("exception when checkSignature", e);
-			}
-		}
-		return isSignatureValid;
-	}
-
-	public String getEchostr() {
-		return echostr;
-	}
-
-	public void setEchostr(String echostr) {
-		this.echostr = echostr;
-	}
-
-	public String getSignature() {
-		return signature;
-	}
-
-	public void setSignature(String signature) {
-		this.signature = signature;
-	}
-
-	public String getTimestamp() {
-		return timestamp;
-	}
-
-	public void setTimestamp(String timestamp) {
-		this.timestamp = timestamp;
-	}
-
-	public String getNonce() {
-		return nonce;
-	}
-
-	public void setNonce(String nonce) {
-		this.nonce = nonce;
 	}
 
 	// 从输入流读取post参数
@@ -192,5 +92,10 @@ public class WeixinMessageAction extends AjaxActionSupport {
 			}
 		}
 		return buffer.toString();
+	}
+
+	@Override
+	protected String getToken() {
+		return ConfigUtil.getInstance().getWeixinAppBindToken();
 	}
 }
