@@ -4,8 +4,18 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
 	version="2.4">
 	<display-name>ChiefMech</display-name>
+	<!-- 配置spring配置文件加载的位置 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
+	<!-- 设置系统启动时应该设置的参数 -->
 	<listener>
 		<listener-class>com.chiefmech.listener.SystemInitListener</listener-class>
+	</listener>
+	<!-- 加载spring的配置文件 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	<filter>
 		<filter-name>struts2</filter-name>
