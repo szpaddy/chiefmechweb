@@ -1,6 +1,10 @@
 package com.chiefmech.common.action.ajax;
 
+import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Namespace;
+
 @SuppressWarnings("serial")
+@Namespace("/ajax")
 public class AjaxTestAction extends AjaxActionSupport {
 	private String username;
 
@@ -12,6 +16,7 @@ public class AjaxTestAction extends AjaxActionSupport {
 		this.username = username;
 	}
 
+	@Action("AjaxTest")
 	public void handleAjaxRequest() {
 		String id = "1";
 		String age = "25";

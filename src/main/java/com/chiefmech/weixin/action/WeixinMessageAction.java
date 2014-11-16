@@ -1,14 +1,23 @@
 package com.chiefmech.weixin.action;
 
 import org.apache.log4j.Logger;
+import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Namespace;
 
 import com.chiefmech.weixin.msg.BaseMsg;
 import com.chiefmech.weixin.util.MessageFactory;
 
 @SuppressWarnings("serial")
+@Namespace("/weixin")
 public class WeixinMessageAction extends SimpleWeixinActionSupport {
 	private static Logger logger = Logger.getLogger(WeixinMessageAction.class
 			.getName());
+
+	@Override
+	@Action("message")
+	public void handleAjaxRequest() {
+		super.handleAjaxRequest();
+	}
 
 	protected BaseMsg onTextMsgReceived(String content) {
 		return MessageFactory.createTextMsg("onTextMsgReceived-->" + content);

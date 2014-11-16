@@ -31,7 +31,7 @@ public abstract class WeixinActionSupport extends AjaxActionSupport {
 	protected String nonce = null;
 
 	@Override
-	protected void handleAjaxRequest() {
+	public void handleAjaxRequest() {
 		// 回复空串是微信的规定，代表不回复
 		String responseStr = "";
 		if (SignUtil.checkSignature(getToken(), signature, timestamp, nonce)) {

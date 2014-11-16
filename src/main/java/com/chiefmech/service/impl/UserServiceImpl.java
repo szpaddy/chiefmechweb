@@ -2,20 +2,18 @@ package com.chiefmech.service.impl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
 import com.chiefmech.service.UserService;
 import com.chiefmech.service.dao.UserDao;
 import com.chiefmech.vo.User;
 
+@Service("userService")
 public class UserServiceImpl implements UserService {
+	@Resource(name = "userDao")
 	private UserDao userDao;
-
-	public UserDao getUserDao() {
-		return userDao;
-	}
-
-	public void setUserDao(UserDao userDao) {
-		this.userDao = userDao;
-	}
 
 	@Override
 	public int countAll() {
