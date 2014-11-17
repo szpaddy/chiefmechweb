@@ -37,6 +37,11 @@
                     "name": "爱车美容", 
                     "type": "click", 
                     "key": "key_car_facial"
+                }, 
+                {
+                    "name": "开发测试", 
+                    "type": "click", 
+                    "key": "key_developer_test"
                 }
             ]
         }, 

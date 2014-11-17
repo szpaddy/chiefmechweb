@@ -4,9 +4,6 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import org.apache.log4j.Logger;
-import org.quartz.JobExecutionException;
-
-import com.chiefmech.weixin.quartz.AccessTokenUpdateJob;
 
 public class SystemInitListener implements ServletContextListener {
 	private static Logger logger = Logger.getLogger(SystemInitListener.class
@@ -22,14 +19,6 @@ public class SystemInitListener implements ServletContextListener {
 		logger.info("SystemInitListener is invoked");
 		// do not check the quartz version
 		System.setProperty("org.terracotta.quartz.skipUpdateCheck", "true");
-
-		// init the access_token
-		try {
-			new AccessTokenUpdateJob().execute(null);
-		} catch (JobExecutionException e) {
-			logger.error(
-					"exception when init access_token in SystemInitListener", e);
-		}
 	}
 
 }
