@@ -13,7 +13,7 @@
 		</property>
 		<!-- 调用类中的方法 -->
 		<property name="targetMethod">
-			<value>execute2</value>
+			<value>execute</value>
 		</property>
 	</bean>
 	<!-- 定义触发时间  每半小时更新一次access_token -->
@@ -23,7 +23,7 @@
 		</property>
 		<!-- cron表达式 -->
 		<property name="cronExpression">
-			<value>0/10 * * * * ?</value>
+			<value>* 30 * * * ?</value>
 		</property>
 	</bean>
 	<!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序 -->
